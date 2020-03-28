@@ -1,0 +1,60 @@
+#Sudah selesai. yang belum dilaksnain bikin hiistory sama trnasfer antar akun
+def program2():
+    b = 0
+    a = True
+    print("p"*30)
+    while True:
+        pilihan2 = int(input("Sudah punya akun?\n1. Sudah\n2. Belum\n"))
+        if pilihan2 == 1:
+            nama = input("Masukkan username anda ")
+            password = input("Masukkan password anda ")
+            c = 1
+            for x in range(len(database)//3):
+                d = False
+                c = str(c)
+                saldo = "saldo" + c
+                user = "user" + c
+                pw = "pw" + c
+                a = True
+                if nama == database[user] and password == database[pw]:
+                    while a:
+                        pilihan = int(input("Silahkan pilih menu\n1. Melihat saldo\n2. Pemasukan\n3. Pengeluaran\n4. Transfer\n5. Log out\n6. Selesai\n"))
+                        if pilihan == 2:
+                            masuk = int(input("Masukkan jumlah pemasukan anda "))
+                            database[saldo] = masuk
+                        elif pilihan == 3:
+                            keluar = int(input("Masukkan jumlah pengeluaran anda "))
+                            database[saldo] = database[saldo] - keluar
+                        elif pilihan == 4:
+                            target = input("Masukkan username akun tujuan anda ")
+                        elif pilihan == 5 :
+                            a = False
+                            d = True
+                            break
+                        elif pilihan == 6:
+                            exit()
+                        print("\n","-"*30,"Jumlah saldo anda saat ini yaitu ",database[saldo],"\n")    
+                else:
+                    if x < len(database)//3:
+                        c = int(c)
+                        c = c + 1
+                    if x == len(database)//3:
+                        print("Username atau password yang anda masukkan salah ")
+                if d:
+                    break
+        elif pilihan2 == 2:
+            nama = input("Masukkan username yang anda inginkan ")
+            password = input("Masukkan password yang anda inginkan ")
+            b = b + 1
+            b = str(b)
+            saldo = "saldo" + b
+            user = "user" + b
+            pw = "pw" + b
+            database[user] = nama
+            database[pw] = password
+            database[saldo] = 0
+            b = int(b)
+database = {}
+b = 0
+a = True
+program2()

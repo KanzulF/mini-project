@@ -1,42 +1,28 @@
 ## Game TikTakToe
 
-papan1 = [ 1 , 2 , 3 ]
-papan2 = [ 4 , 5 , 6 ]
-papan3 = [ 7 , 8 , 9 ]
+papan = [1,2,3,4,5,6,7,8,9]
 def output():
-    for a in papan1:
-        print(a, end ="\t")
-    print()
-    print()
-    for b in papan2:
-        print(b, end ="\t")
-    print()
-    print()
-    for c in papan3:
-        print(c, end="\t")
-    print()
+    for baris in range(0,9,3):
+        for kolom in range(3):
+            print(papan[kolom+baris],end="\t")
+        print("\n\n")
+
 def cek_kemenangan():
-    if papan1[0] == papan1[1] == papan1[2] or papan2[0] == papan2[1] == papan2[2] or papan3[0] == papan3[1] == papan3[2] or papan1[0] == papan2[0] == papan3[0] or papan1[1] == papan2[1] == papan3[1] or papan1[2] == papan2[2] == papan3[2] or papan1[0] == papan2[1] == papan3[2] or papan3[0] == papan2[1] == papan1[2]:
+    if papan[0] == papan[1] == papan[2] or papan[3] == papan[4] == papan[5] or papan[6] == papan[7] == papan[8] or papan[0] == papan[3] == papan[6] or papan[1] == papan[4] == papan[7] or papan[2] == papan[5] == papan[8] or papan[0] == papan[4] == papan[8] or papan[6] == papan[4] == papan[2]:
         print("-----------------------------Selamat kamu menang")
         return True
     else:
         return False
-def cek_input1():
-    if history.count(player1) >= 1:
+    
+def cek_input():
+    if history.count(player) >= 1:
         cek = True
         return False
     else:
-        history.append(player1)
+        history.append(player)
         cek = False
         return True
-def cek_input2():
-    if history.count(player2) >= 1:
-        cek = True
-        return False
-    else:
-        history.append(player2)
-        cek = False
-        return True
+
 history = []
 output()
 batas_utama = 1
@@ -44,26 +30,9 @@ while batas_utama <= 5:
     batas_utama = batas_utama + 1
     cek = True
     while cek:
-        player1 = int(input("Player 1 "))
-        if cek_input1():
-            if player1 == 1:
-               papan1[0] = "O"
-            elif player1 == 2:
-               papan1[1] = "O"
-            elif player1 == 3:
-               papan1[2] = "O"
-            elif player1 == 4:
-               papan2[0] = "O"
-            elif player1 == 5:
-               papan2[1] = "O"
-            elif player1 == 6:
-               papan2[2] = "O"
-            elif player1 == 7:
-               papan3[0] = "O"
-            elif player1 == 8:
-               papan3[1] = "O"
-            else:
-               papan3[2] = "O"
+        player = int(input("Player 1 "))
+        if cek_input():
+            papan[player-1] = "O"
             output()
             break
     if cek_kemenangan():
@@ -71,26 +40,9 @@ while batas_utama <= 5:
     cek = True
     if batas_utama != 5:
         while cek:
-            player2 = int(input("Player 2 "))
-            if cek_input2():
-                if player2 == 1:
-                   papan1[0] = "X"
-                elif player2 == 2:
-                   papan1[1] = "X"
-                elif player2 == 3:
-                   papan1[2] = "X"
-                elif player2 == 4:
-                   papan2[0] = "X"
-                elif player2 == 5:
-                   papan2[1] = "X"
-                elif player2 == 6:
-                   papan2[2] = "X"
-                elif player2 == 7:
-                   papan3[0] = "X"
-                elif player2 == 8:
-                   papan3[1] = "X"
-                else:
-                   papan3[2] = "X"
+            player = int(input("Player 2 "))
+            if cek_input():
+                papan[player-1] = "X"
                 output()
                 break
         if cek_kemenangan():

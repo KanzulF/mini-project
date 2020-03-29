@@ -1,5 +1,5 @@
 #Sudah selesai. yang belum dilaksnain bikin hiistory sama trnasfer antar akun
-def program2():
+def program2(): 
     b = 0
     a = True
     print("p"*30)

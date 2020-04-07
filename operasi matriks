@@ -1,0 +1,20 @@
+matriks1 = [[1,2],
+            [4,0]]
+matriks2 = [[1,2],
+            [-1,2]]
+matriks_hasil = []
+for a in range(len(matriks1)):
+    print(a)
+    b = 0
+    hasil = []
+    for c in range(len(matriks2[0])):
+        d = 0
+        for e in range(len(matriks2)):
+            d = d + (matriks1[a][e])*(matriks2[e][b])
+        b = b + 1
+        hasil.append(d)
+    matriks_hasil.append(hasil)
+for f in matriks_hasil:
+    for g in f:
+        print(g,end="\t")
+    print()

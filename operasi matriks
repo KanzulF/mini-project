@@ -1,20 +1,48 @@
-matriks1 = [[1,2],
-            [4,0]]
-matriks2 = [[1,2],
-            [-1,2]]
+himpunan_matriks = []
 matriks_hasil = []
-for a in range(len(matriks1)):
-    print(a)
-    b = 0
-    hasil = []
-    for c in range(len(matriks2[0])):
-        d = 0
-        for e in range(len(matriks2)):
-            d = d + (matriks1[a][e])*(matriks2[e][b])
-        b = b + 1
-        hasil.append(d)
-    matriks_hasil.append(hasil)
-for f in matriks_hasil:
-    for g in f:
-        print(g,end="\t")
+matriks2 = []
+matriks = []
+x = 0
+
+#menginputkan matriks dengan jumlah dan ordo matriks terserah user
+jumlahMatriks = int(input("Ingin mengalikan berapa matriks? "))
+for i in range(jumlahMatriks):
+    baris = int(input("Baris matriks : "))
+    kolom = int(input("Kolom matriks : "))
+    for y in range(kolom):
+        for z in range(baris):
+            isi = int(input())
+            matriks.append(isi)
+        matriks2.append(matriks)
+        matriks = []
+    himpunan_matriks.append(matriks2)
+    matriks2 = []
+    
+#menampilkan matriks-matriks yang telah diinputkan user
+for z in himpunan_matriks:
+    x = x + 1
+    for y in z:
+        print("matriks ke-%i" %(x),y)
     print()
+    
+#mengalikan matriks-matriks yang ada
+for j in range(len(himpunan_matriks)-1):
+    j = 0
+    for a in range(len(himpunan_matriks[j])):
+        hasil = []
+        b = 0
+        for c in range(len(himpunan_matriks[j + 1][0])):
+            d = 0
+            for e in range(len(himpunan_matriks[j + 1])):
+                d = d + (himpunan_matriks[j][a][e]*himpunan_matriks[j+1][e][b])
+            b = b + 1
+            hasil.append(d)
+        matriks_hasil.append(hasil)
+    himpunan_matriks.pop(0)
+    himpunan_matriks[0] = matriks_hasil
+    print('Hasil perkalian matriks :')
+    for f in matriks_hasil:
+        for g in f:
+            print(g,end="\t")
+        print()
+    matriks_hasil = []

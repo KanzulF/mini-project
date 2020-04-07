@@ -9,10 +9,13 @@ jumlahMatriks = int(input("Ingin mengalikan berapa matriks? "))
 for i in range(jumlahMatriks):
     baris = int(input("Baris matriks : "))
     kolom = int(input("Kolom matriks : "))
-    for y in range(kolom):
-        for z in range(baris):
-            isi = int(input())
-            matriks.append(isi)
+    for z in range(kolom):
+        isi = input()+" "
+        for a in range(baris):
+            spasi = isi.find(" ")
+            isi2 = isi[:spasi]
+            matriks.append(int(isi2))
+            isi = isi[(spasi+1):]
         matriks2.append(matriks)
         matriks = []
     himpunan_matriks.append(matriks2)

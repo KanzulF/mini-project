@@ -1,0 +1,40 @@
+#1Buatlah progam (coding) sederhana yang dapat menghitung volume dan luas permukaan bangun ruang tabung, kerucut dan balok. Dengan syarat user memilih akan menghitung volume atau luas permukaan bangun ruang tabung, kerucut atau balok. Dan progam tersebut memberikan output an disetiap akan meminta inputan. Dan hasil akhir berupa luas permukaan atau volume beserta keterangan jenis bangun ruang dan keterangan hasil yang dihitung (volume atau luas permukaan)
+
+bangun = int(input("pilih bangun ruang yang ingin anda hitung\n1. Tabung\n2. Kerucut\n3. Balok"))
+volume = 1
+yg_dicari = 1
+for i in range(1,2):
+    if bangun == 1:
+        jari2 = int(input("masukkan panjang jari-jari!"))
+        tinggi = int(input("masukkan panjang tinggi!"))
+        yg_dicari = int(input("pilih\n1. Volume\n2. Luas Permukaan"))
+        if yg_dicari == 1:
+            volume = 3.14*(jari2*jari2)*tinggi
+        elif yg_dicari == 2:
+            luas = 3.14*(jari2*2)*tinggi + 2*3.14*(jari2*jari2)
+    elif bangun == 2:
+        jari2 = int(input("masukkan panjang jari-jari!"))
+        tinggi = int(input("masukkan panjang tinggi!"))
+        yg_dicari = int(input("pilih\n1. Volume\n2. Luas Permukaan"))
+        if yg_dicari == 1:
+            volume = 3.14*(jari2*jari2)*tinggi/3
+        elif yg_dicari == 2:
+            s = ((jari2/2)*(jari2/2)+ tinggi*tinggi)**0.5
+            luas = 3.14*jari2*(jari2 + s)
+    elif bangun == 3:
+        panjang = int(intput("masukkan panjang!"))
+        lebar = int(intput("masukkan panjang!"))
+        tinggi = int(intput("masukkan panjang!"))
+        yg_dicari = int(input("pilih\n1. Volume\n2. Luas Permukaan"))
+        if yg_dicari == 1:
+            volume = panjang*lebar*tinggi
+        elif yg_dicari == 2:
+            luas = 2*((panjang*lebar)+(lebar*tinggi)+(tinggi*panjang))
+    else:
+        print("pilihanmu gk tersedia")
+if yg_dicari == 1:
+    print("Volume = ", volume)
+elif yg_dicari == 2:
+    print("Luas Permukaan = ", luas)
+else:
+    print("Gak ada pilihannya")

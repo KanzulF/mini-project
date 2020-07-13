@@ -1,0 +1,170 @@
+#Ini merupakan program CRUD yang ditugaskan oleh Asdos saya sebagai UAS
+#Program ini berlaku untuk file .csv yang dinamakan file.csv
+#Apabila ingin mengganti file maka file tersebut harus diganti nama terlebih dahulu menjadi file.csv
+# link writeup : https://drive.google.com/file/d/1ibND4Dc9k9yVraJ8jSrc17hFB0rZY3U8/view?usp=sharing
+
+
+import csv                                                                                                                
+nim = []                                                                    
+nama = []
+
+def csvIn():                                                                
+    with open('file.csv') as csv_file:                                
+        csv_reader = csv.reader(csv_file, delimiter=';')                  
+        line_count = 0                                               
+        for row in csv_reader:                                             
+            nim.append(row[0])                                         
+            nama.append(row[1])                                        
+    csv_file.close()                                                     
+
+def showAll():                                               
+    for row in nim:                                                  
+        index = nim.index(row)                                        
+        print(row, end="")                                             
+        print(nama[index])                                              
+
+def createNew():                                               
+    nim.append(input("Masukkan NIM :  "))                                
+    nama.append(' '+input("Masukkan Nama : "))                             
+    print("Data berhasil di tambahkan")                                    
+    updateData()                                                           
+
+def updateData():                                                          
+    data = []                                                              
+    with open('file.csv','w', newline='') as csv_file:             
+        isi = csv.writer(csv_file, delimiter=';')                    
+        for Nim,Nama in zip(nim,nama):                                    
+            data.append(Nim)                                             
+            data.append(Nama)                                        
+            isi.writerow((data[0],data[1],""))              
+            data = [] 
+    csv_file.close()                                             
+
+def delete():                                                            
+    objek = input("Masukkan Nama atau NIM : ")                           
+    if ' '+objek in nama or objek in nim:                                
+        try:                                                               
+            try:
+                nim.remove(nim[nama.index(" "+objek)])                     
+                nama.remove(" "+objek)
+            except:
+                nama.remove(nama[nim.index(objek)])                        
+                nim.remove(objek)
+        except:
+            pass                                                       
+    elif objek == "0":                                               
+        pass
+    else:                                                       
+        print("Data tidak ditemukan, \nsilahkan masukkan data kembali atau pilih 0 untuk batal")
+        delete()                                                          
+    print("Data berhasil dihapus")                                       
+    updateData()                                                        
+
+def searchParsial(objek):                                                            
+    indeks = []
+    if objek == '#':
+        pass
+    else:
+        for a in range(len(nama)):                             
+            if objek.upper() in nama[a].upper() or objek.upper() in nim[a].upper():                                
+                indeks.append(a)
+        if len(indeks) == 0:
+            print("Data tidak ditemukan, \nsilahkan masukkan data kembali atau pilih # untuk batal")
+            objek = input("Masukan Nama atau NIM : ")
+            searchParsial(objek)
+        else:
+            for a in indeks:
+                print(nim[a] + nama[a])
+
+def searchFull(base,objek):
+    left = 0
+    right = len(base)-1
+    while True:
+        if left <= right:
+            mid = (left + right) // 2
+            if objek.upper() == base[mid].upper():
+                print('Data ditemukan :\n%s : %s' %(nim[mid],nama[mid]))
+                break
+            elif base[mid].upper() < objek.upper():
+                left = mid + 1
+            elif base[mid].upper() > objek.upper():
+                right = mid - 1
+        else:
+            print("Data tidak ditemukan, \nsilahkan masukkan data kembali atau pilih # untuk batal")
+            objek = input("Masukan Nama atau NIM : ")
+            if objek == '#':
+                pass
+            elif 'a' in objek or '0' not in objek:
+                objek = ' '+objek
+                searchFull(nama,objek)
+            else:
+                searchFull(nim,objek)
+            break
+                      
+def apk():                                                          
+    print('-'*30)                                                   
+    mauLo = int(input(                                                     
+            """Silahkan pilih menu yang anda inginkan :
+1. Melihat seluruh isi data
+2. Menambah data
+3. Pencarian data
+4. Menghapus data
+5. Keluar
+Pilihanmu : """
+))
+    print('-'*30)                                                   
+    if mauLo == 1:                                        
+        pilihan = int(input("Ditampilkan secara :\n1. Reguler\n2. Berdasar Nama\n3. Berdasar NIM\nPilihan anda : "))
+        if pilihan == 1:
+            pass
+        elif pilihan == 2:
+            pilihan2 = int(input("Diurutkan dengan\n1. Ascending\n2. Descending\n Pilihan anda : "))
+            if pilihan2 == 1:
+                sortingASC(nama,nim)
+            else:
+                sortingDESC(nama,nim)
+        elif pilihan == 3:
+            pilihan2 = int(input("Diurutkan dengan\n1. Ascending\n2. Descending\n Pilihan anda : "))
+            if pilihan2 == 1:
+                sortingASC(nim,nama)
+            else:
+                sortingDESC(nim,nama)
+        showAll()
+                
+    elif mauLo == 2:                                                     
+        createNew()
+    elif mauLo == 3:                                             
+        pilihan = int(input("Melakukan pencarian\n1. Full\n2. Parsial\nPilihan anda : "))
+        objek = input("Masukan Nama atau NIM : ")
+        if pilihan == 1:
+            if 'a' in objek or '0' not in objek:
+                objek = ' '+objek
+                sortingASC(nama,nim)
+                searchFull(nama,objek)
+            else:
+                sortingASC(nim,nama)
+                searchFull(nim,objek)
+        else:
+            searchParsial(objek)
+    elif mauLo == 4:                                       
+        delete()
+    elif mauLo == 5:                                                      
+        exit()
+    else:                                                               
+        print("Tidak ada pilihan tersebut")
+    apk()                                                                 
+def sortingDESC(base,base2):       
+    for b in range(1,len(base)):
+        for c in range(len(base)-1):
+            if base[c+1].upper() > base [c].upper():
+                base[c+1],base[c] = base[c],base[c+1]
+                base2[c+1],base2[c] = base2[c],base2[c+1]
+def sortingASC(base,base2):
+    for b in range(1,len(base)):
+        for c in range(len(base)-1):
+            if base[c+1].upper() < base [c].upper():
+                base[c+1],base[c] = base[c],base[c+1]
+                base2[c+1],base2[c] = base2[c],base2[c+1]
+
+csvIn()                                                             
+apk()                                                               

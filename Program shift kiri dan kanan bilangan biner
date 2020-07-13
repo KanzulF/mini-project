@@ -1,0 +1,31 @@
+while True:
+    inputan = int(input("Masukkan bilangan desimal "))
+    desimal = bin(inputan)
+    hasil = desimal[2:]
+    print(hasil)
+    pilihan = int(input("Anda ingin melakukan apa?\n1. Shift kanan\n2. Shift kiri\n3. Keduanya (kanan dulu baru kiri)"))
+    looping = int(input("Anda ingin melakukannya berapa kali? "))
+    if pilihan == 1:
+        for a in range(1, looping+1):
+            banyakKarakter = len(hasil)
+            hasil = hasil[:banyakKarakter-1]
+            hasil = "0"+hasil
+            print(hasil)
+    elif pilihan == 2:
+        for a in range(1, looping+1):
+            hasil = hasil[1:]
+            hasil = hasil+"0"
+            print(hasil)
+    elif pilihan == 3:
+        for a in range(1, looping+1):
+            banyakKarakter = len(hasil)
+            hasil = hasil[:banyakKarakter-1]
+            hasil = "0"+hasil
+            print(hasil)
+        hasil = desimal[2:]
+        for a in range(1, looping+1):
+            hasil = hasil[1:]
+            hasil = hasil+"0"
+            print(hasil)
+    else:
+        print("Mohon input sesuai petunjuk :D")

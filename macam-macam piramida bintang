@@ -1,0 +1,119 @@
+#Piramida bintang rata kanan
+kolom = int(input("Berapa kolom yang anda inginkan ? "))
+kolom1 = kolom
+tanda = "*"
+for a in range(1, kolom+1):
+    for c in range(1, kolom1+1):
+        print(" ",end ="")
+    kolom1 = kolom1 - 1
+    print(tanda)
+    tanda = tanda + "*"
+    
+
+#Piramida bintang rata kiri
+kolom = int(input("Berapa kolom yang anda inginkan ? "))
+tanda = "*"
+for a in range(1, kolom+1):
+    print(tanda)
+    tanda = tanda + "*"
+
+
+#Piramida bintang sempurna
+kolom = int(input("Berapa kolom yang anda inginkan ? "))
+kolom1 = kolom
+tanda = "*"
+tanda2 ="*"
+for a in range(1, kolom+1):
+    for c in range(1, kolom1):
+        print(" ",end="")
+    kolom1 = kolom1 - 1
+    print(tanda,end="")
+    tanda = tanda + "*"
+    if a == 1:
+        print()
+    if a > 1:
+        print(tanda2)
+        tanda2 = tanda2 + "*"
+
+
+#Piramida bintang rata kiri terbalik
+kolom = int(input("Berapa kolom yang anda inginkan ? "))
+pengurang = 0
+tanda = "*"*kolom
+for c in range(1, kolom+1):
+    print(tanda)
+    pengurang = pengurang + 1
+    tanda = "*"*(kolom - pengurang)
+
+
+#Piramida bintang rata kanan terbalik
+kolom = int(input("Berapa kolom yang anda inginkan ? "))
+pengurang = 0
+tanda = "*"*kolom
+tanda2 = " "
+for c in range(1, kolom+1):
+    print(tanda2,tanda)
+    pengurang = pengurang + 1
+    tanda = "*"*(kolom - pengurang)
+    tanda2 = tanda2 + " "
+    
+
+#Piramida bintang sempurna terbalik
+kolom = int(input("Berapa kolom yang anda inginkan ? "))
+pengurang = 0
+tanda = "*"*kolom
+tanda2 = ""
+for c in range(1, kolom+1):
+    print(tanda2,tanda,end="")
+    pengurang = pengurang + 1
+    tanda = "*"*(kolom - pengurang)
+    tanda2 = tanda2 + " "
+    print(tanda)
+   
+   
+#Piramida bayangan bintang sempurna
+kolom1 = int(input("Berapa kolom yang anda inginkan ? "))
+tanda = " "
+tanda2 =" "
+z = 1
+for a in range(1, kolom+1):
+    for c in range(1, kolom1):
+        print("*",end="")
+    for e in range(z):
+        print(" ",end="")
+    for d in range(1,kolom1):
+        print("*",end="")
+    z = z + 2
+    kolom1 = kolom1 - 1
+    print(tanda,end="")
+    tanda = tanda + " "
+    if a == 1:
+        print()
+    if a > 1:
+        print(tanda2)
+        tanda2 = tanda2 + " "
+
+    
+#Piramida bayangan bintang sempurna terbalik
+kolom1 = int(input("Berapa kolom yang anda inginkan ? "))
+tanda = " "
+tanda2 =" "
+z = 1
+for a in range(1, kolom+1):
+    for c in range(z):
+        print("*",end="")
+    for e in range(1, (kolom1)*2):
+        print(" ",end="")
+    for d in range(z):
+        print("*",end="")
+    z = z + 1
+    kolom1 = kolom1 - 1
+    print(tanda,end="")
+    tanda = tanda + " "
+    if a == 1:
+        print()
+    if a > 1:
+        print(tanda2)
+        tanda2 = tanda2 + " "
+
+    

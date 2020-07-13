@@ -1,0 +1,39 @@
+#Program yang memilah angka ganjil dan genap dalam data
+bilangan = []
+b = 0
+loop = int(input("Anda ingin memasukkan berapa bilangan "))
+for a in range(loop):
+    angka = float(input("Masukkan bilangan ke-%s  " % (a+1)))
+    bilangan.append(angka)
+print()
+for a in bilangan:
+    print(a, end="\t")
+print("\n")
+for a in bilangan:
+    b = b + 1
+    if a % 2 == 0:
+        print("Bilangan genap ke-%s " %(b),a,"Terletak di urutan ke ",bilangan.index(a)+1)
+print("-"*30)
+b = 0
+for a in bilangan:
+    b = b + 1
+    if a % 2 == 1:
+        print("Bilangan ganil ke-%s " %(b),a,"Terletak di urutan ke ",bilangan.index(a)+1)
+
+
+#Program yang menghitung banyaknya bilangan ganjil dan genap, dan juga menjumlahkan seluruh bilangan yang ada
+data = []
+loop = int(input("Anda ingin memasukkan berapa bilangan "))
+for a in range(loop):
+    angka = float(input("Masukkan bilangan ke-%s  " % (a+1)))
+    data.append(angka)
+ganjil = []
+genap = []
+total = 0
+for a in data:
+    if a % 2 == 1:
+        ganjil.append(a)
+    else:
+        genap.append(a)
+    total = total + a
+print("Banyaknya bilangan ganil %s\nBanyaknya bilangan genap %s\nJumlah seluruh bilangan %i"%(len(ganjil),len(genap),total))
